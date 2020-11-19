@@ -1,0 +1,7 @@
+/* ==========================================
+        Card Style For student proplemts
+   ============================================= */
+   .card>.card-body>h3>a {
+        text-decoration: none;
+        color: black;
+    }
