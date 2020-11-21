@@ -19,8 +19,6 @@
 
 <body>
 
-
-
     <div id="wrapper">
 
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -89,8 +87,11 @@
                 </div>
                 <!-- /. ROW  -->
                 <hr />
-                <div class="container">
-                    <div>
+                <div class="container" id="insertPost">
+
+                    <!-- 
+                        here you add the posts of the students
+                        <div>
                         <div class="card">
                             <div class="card-body">
                                 <h3><a href="#">موضوع المشكلة حق الطالب </a></h3>
@@ -98,7 +99,9 @@
                             </div>
                         </div>
                     </div>
+
                     <hr/>
+
                     <div>
                         <div class="card">
                             <div class="card-body">
@@ -107,37 +110,58 @@
                             </div>
                         </div>
                     </div>
+                </div> 
+            -->
+
+                    <!-- /. ROW  -->
                 </div>
-
-                <!-- /. ROW  -->
+                <!--To this place you can add things which are related to the studetn page-->
+                <!-- /. PAGE INNER  -->
             </div>
-            <!--To this place you can add things which are related to the studetn page-->
-            <!-- /. PAGE INNER  -->
+
+            <!-- /. PAGE WRAPPER  -->
         </div>
 
-        <!-- /. PAGE WRAPPER  -->
-    </div>
-
-    <div class="footer">
-        <div class="row">
-            <div class="col-lg-12">
-                &copy; 2014 yourdomain.com | Design by: <a href="http://binarytheme.com" style="color:#fff;"
-                    target="_blank">www.binarytheme.com</a>
+        <div class="footer">
+            <div class="row">
+                <div class="col-lg-12">
+                    &copy; 2014 yourdomain.com | Design by: <a href="http://binarytheme.com" style="color:#fff;"
+                        target="_blank">www.binarytheme.com</a>
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <!-- /. WRAPPER  -->
-    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-    <!-- JQUERY SCRIPTS -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
-    <!-- BOOTSTRAP SCRIPTS for RTL -->
-    <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"
-        integrity="sha384-a9xOd0rz8w0J8zqj1qJic7GPFfyMfoiuDjC9rqXlVOcGO/dmRqzMn34gZYDTel8k"
-        crossorigin="anonymous"></script>
-    <!-- CUSTOM SCRIPTS -->
-    <script src="assets/js/custom.js"></script>
+        <!-- /. WRAPPER  -->
+        <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+        <!-- JQUERY SCRIPTS -->
+        <script src="assets/js/jquery-1.10.2.js"></script>
+        <!-- BOOTSTRAP SCRIPTS for RTL -->
+        <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"
+            integrity="sha384-a9xOd0rz8w0J8zqj1qJic7GPFfyMfoiuDjC9rqXlVOcGO/dmRqzMn34gZYDTel8k"
+            crossorigin="anonymous"></script>
+        <!-- CUSTOM SCRIPTS -->
+        <script src="assets/js/custom.js"></script>
+
+        <!----------- handmade scripts for the functions of the page ---------------->
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+        <script type="text/x-handlebars-template" id="posts-template">
+        {{#each post}}
+            <div>
+                <div class="card">
+                    <div class="card-body">
+                        <h3 ><a id="{{this._id}}" href="#">{{this.title}} </a></h3>
+                        <p class="card-text small">عبدالرحمن الرحيلي ، {{this.date}}</p>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <hr/>
+        {{/each}}
+    </script>
+
+        <script src="assets/js/studentProblems.js"></script>
 
 
 </body>

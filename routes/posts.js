@@ -20,31 +20,57 @@ const sizeLimit = 1 * 1024 * 1024; // 1MB
 
 const upload = multer({
     storage: storage
-}).single('attachment');
+});
 
 // ----------------- finished multer set up -----------------------------
 
-router.post('/', async (req, res) => {
-    console.log(typeof upload)
-    upload(req, res, (err) => {
+// advisor taking all posts made by students
+router.get('/', async (req, res) => {
+    try {
+        await Post.find({}).select('_id title date')
+        .then(posts => {
 
-        if (err) {
-            console.log(err);
-            res.end('no file');
-        } else {
-            if (req.file === undefined) {
-                console.log("file is undefianed");
-                res.end('file not specifed....');
-            } else {
-                console.log(req.file);
-                req.body = req.body ;
-                console.log(req.file.originalname);
-                console.log(req.file.filename); // value of the filename is undefined
-                res.end('file is ok');
-            }
-        }
+            console.log(posts);
+            // res.end();
+
+            res.status(200).json(posts)
+        })
+    } catch (err) {
+        res.sendStatus(400);
+    }
+})
+
+// post for the student to send to his advisor
+router.post('/', upload.single('attachment'), async (req, res) => {
+
+    let postBody = {
+        studentID: Number(req.body.student_id),
+        title: req.body.title,
+        body: req.body.message,
+        type: 'private',
+        attachment: req.file !== undefined ? req.file.filename : 'No file specified',
+    }
+
+    const post = new Post({
+        studentID: postBody.studentID,
+        title: postBody.title,
+        body: postBody.body,
+        type: postBody.type,
+        attachments: postBody.attachment
     })
-    
+
+    try {
+
+        const savedPost = await post.save();
+        console.log(' \n saved post is');
+        console.log(savedPost);
+        res.status(200).redirect('../student.html'); // there should be some other routing methods here..!
+
+    } catch (err) {
+        console.log(err);
+        console.log("some error with saving the post happen..");
+        res.end('an error with the file');
+    }
     res.redirect('../student.html');
 })
 

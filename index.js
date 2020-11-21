@@ -13,7 +13,6 @@ if (process.env.NODE_ENV === 'development') {
 // libraries
 const express = require('express');
 const mongoose = require("mongoose");
-const multer = require('multer');
 const path = require('path');
 
 // route imports 
