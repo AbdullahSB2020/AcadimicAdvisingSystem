@@ -83,6 +83,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2> الطلبات المرسلة من الطلاب </h2>
+                        <button class="btn btn-danger" hidden id="request">make request</button>
                     </div>
                 </div>
                 <!-- /. ROW  -->
@@ -90,7 +91,7 @@
                 <div class="container" id="insertPost">
 
                     <!-- 
-                        here you add the posts of the students
+                        ------------------------ here you add the posts of the students ---------------------------------------
                         <div>
                         <div class="card">
                             <div class="card-body">
@@ -146,23 +147,31 @@
         <!----------- handmade scripts for the functions of the page ---------------->
         <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
         <script type="text/x-handlebars-template" id="posts-template">
-        {{#each post}}
-            <div>
-                <div class="card">
-                    <div class="card-body">
-                        <h3 ><a id="{{this._id}}" href="#">{{this.title}} </a></h3>
-                        <p class="card-text small">عبدالرحمن الرحيلي ، {{this.date}}</p>
-                        
+            {{#each post}}
+                <div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 ><a id="{{this._id}}" href="#">{{this.title}} </a></h3>
+                            <p class="card-text small">عبدالرحمن الرحيلي ، {{this.date}}</p>
+                            
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <hr/>
-        {{/each}}
-    </script>
+                
+                <hr/>
+            {{/each}}
+        </script>
 
         <script src="assets/js/studentProblems.js"></script>
+        <script>
+            const btn = document.getElementById('request');
 
+            btn.onclick = () => {
+                let req = fetch(apiUrl, {
+                    method: "GET",
+                })
+            }
+        </script>
 
 </body>
 

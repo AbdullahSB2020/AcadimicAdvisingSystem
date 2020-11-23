@@ -3,6 +3,7 @@ const router = express.Router();
 const Post = require('../models/post');
 const multer = require('multer');
 const path = require('path');
+const formatPost = require('../utils/formatPost');
 
 
 // ------------------------- setting up multer --------------------------
@@ -28,13 +29,9 @@ const upload = multer({
 router.get('/', async (req, res) => {
     try {
         await Post.find({}).select('_id title date')
-        .then(posts => {
-
-            console.log(posts);
-            // res.end();
-
-            res.status(200).json(posts)
-        })
+            .then(posts => {
+                res.status(200).json(formatPost(posts));
+            })
     } catch (err) {
         res.sendStatus(400);
     }
@@ -62,8 +59,6 @@ router.post('/', upload.single('attachment'), async (req, res) => {
     try {
 
         const savedPost = await post.save();
-        console.log(' \n saved post is');
-        console.log(savedPost);
         res.status(200).redirect('../student.html'); // there should be some other routing methods here..!
 
     } catch (err) {
@@ -71,7 +66,7 @@ router.post('/', upload.single('attachment'), async (req, res) => {
         console.log("some error with saving the post happen..");
         res.end('an error with the file');
     }
-    res.redirect('../student.html');
+    // res.redirect('../student.html');
 })
 
 module.exports = router;
