@@ -13,10 +13,13 @@ if (process.env.NODE_ENV === 'development') {
 // libraries
 const express = require('express');
 const mongoose = require("mongoose");
+const handlebars = require('express-handlebars');
 const path = require('path');
 
 // route imports 
 const postsRoute = require('./routes/posts');
+const studentsRoute = require('./routes/student');
+const advisorsRoute = require('./routes/advisor');
 
 // initalizing the app
 const app = express();
@@ -36,7 +39,27 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// set handlbars engine
+app.set('view engine', 'hbs');
+app.engine('hbs', handlebars({
+    extname: 'hbs',
+    defaultLayout: 'index',
+}))
+
+// ----------------------- paths for test ---------------------------
+
+// serve index page
+app.get('/', (req, res) => {
+    console.log(req.path)
+    res.render('main',{ pageRole: 'main page'});
+})
+
 // api routes
-app.use('/post',postsRoute);
+app.use('/post', postsRoute);
+
+app.use('/student', studentsRoute);
+app.use('/advisor', advisorsRoute);
+
+// app listenning port
 
 app.listen(PORT, () => console.log(`\n\tapp listens on ${PORT}`));

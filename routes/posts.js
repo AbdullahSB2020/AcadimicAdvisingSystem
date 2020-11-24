@@ -3,7 +3,6 @@ const router = express.Router();
 const Post = require('../models/post');
 const multer = require('multer');
 const path = require('path');
-const formatPost = require('../utils/formatPost');
 
 
 // ------------------------- setting up multer --------------------------
@@ -25,16 +24,25 @@ const upload = multer({
 
 // ----------------- finished multer set up -----------------------------
 
-// advisor taking all posts made by students
-router.get('/', async (req, res) => {
+
+router.get('/one/:id', async (req, res) => {
+    // advisor taking only one post
+    // console.log(req.params.id);
+    let post;
     try {
-        await Post.find({}).select('_id title date')
-            .then(posts => {
-                res.status(200).json(formatPost(posts));
-            })
+         post = await Post.findOne({_id: req.params.id});
     } catch (err) {
         res.sendStatus(400);
     }
+    // console.log(post);
+    // res.end();
+    res.render('replaytoStudent',{
+        layout: 'advisor',        
+        studentID: post.studentID,
+        title: post.title,
+        body: post.body,
+        attachments: post.attachments != 'No file specified' ? post.attachments : false ,
+    });
 })
 
 // post for the student to send to his advisor

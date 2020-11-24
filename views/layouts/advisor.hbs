@@ -19,8 +19,6 @@
 
 <body>
 
-
-
     <div id="wrapper">
 
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -89,57 +87,47 @@
                 </div>
                 <!-- /. ROW  -->
                 <hr />
-                <div class="container">
-                    <div>
-                        <div class="card">
-                            <div class="card-body">
-                                <h3><a href="#">موضوع المشكلة حق الطالب </a></h3>
-                                <p class="card-text small">عبدالرحمن الرحيلي ، 20 / 11 / 2020</p>
-                            </div>
-                        </div>
-                    </div>
-                    <hr/>
-                    <div>
-                        <div class="card">
-                            <div class="card-body">
-                                <h3><a href="#">بحيث يضغط عليها المرشد ويشوف إيش الرسالة</a></h3>
-                                <p class="card-text small">الطيب كرار ، 20 / 11 / 2020</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="container" >
+
+                   
+                      {{{body}}}
+                     
+
+                    <!-- /. ROW  -->
                 </div>
-
-                <!-- /. ROW  -->
+                <!--To this place you can add things which are related to the studetn page-->
+                <!-- /. PAGE INNER  -->
             </div>
-            <!--To this place you can add things which are related to the studetn page-->
-            <!-- /. PAGE INNER  -->
+
+            <!-- /. PAGE WRAPPER  -->
         </div>
 
-        <!-- /. PAGE WRAPPER  -->
-    </div>
-
-    <div class="footer">
-        <div class="row">
-            <div class="col-lg-12">
-                &copy; 2014 yourdomain.com | Design by: <a href="http://binarytheme.com" style="color:#fff;"
-                    target="_blank">www.binarytheme.com</a>
+        <div class="footer">
+            <div class="row">
+                <div class="col-lg-12">
+                    &copy; 2014 yourdomain.com | Design by: <a href="http://binarytheme.com" style="color:#fff;"
+                        target="_blank">www.binarytheme.com</a>
+                </div>
             </div>
         </div>
-    </div>
 
+        {{#if addScript}}
+            {{> getPost}}
+        {{/if}}
+        <!-- /. WRAPPER  -->
+        <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+        <!-- JQUERY SCRIPTS -->
+        <script src="assets/js/jquery-1.10.2.js"></script>
+        <!-- BOOTSTRAP SCRIPTS for RTL -->
+        <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"
+            integrity="sha384-a9xOd0rz8w0J8zqj1qJic7GPFfyMfoiuDjC9rqXlVOcGO/dmRqzMn34gZYDTel8k"
+            crossorigin="anonymous"></script>
+        <!-- CUSTOM SCRIPTS -->
+        <script src="assets/js/custom.js"></script>
 
-    <!-- /. WRAPPER  -->
-    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-    <!-- JQUERY SCRIPTS -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
-    <!-- BOOTSTRAP SCRIPTS for RTL -->
-    <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"
-        integrity="sha384-a9xOd0rz8w0J8zqj1qJic7GPFfyMfoiuDjC9rqXlVOcGO/dmRqzMn34gZYDTel8k"
-        crossorigin="anonymous"></script>
-    <!-- CUSTOM SCRIPTS -->
-    <script src="assets/js/custom.js"></script>
-
-
+        <!-- handmade scripts for the functions of the page -->
+        <!-- handle bars cdn -->
+        {{!-- <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script> --}}
 </body>
 
 </html>
