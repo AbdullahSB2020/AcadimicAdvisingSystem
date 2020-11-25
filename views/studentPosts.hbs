@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-12">
+        <h2> طلباتي المرسلة </h2>
+    </div>
+</div>
+<hr />
+
+<div class="container">
+    {{#unless post}}
+        <h6>لا توجد لديك ملاحظات</h6>
+    {{/unless}}
+    
+    {{#each post}}
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">
+                    <a href="#" class="card-link">
+                        {{this.title}} 
+                        {{#if isAnswered}}
+                            <span class="badge badge-danger"><small>تم الرد</small></span> 
+                        {{else}}
+                            <span class="badge badge-success"><small>لم يتم الرد</small></span> 
+                        {{/if}}
+                    </a>
+                </h4>
+            </div>
+        </div>
+        <hr />
+    {{/each}}
+</div>

@@ -33,13 +33,13 @@ body {
 #page-wrapper {
     padding: 15px 15px;
     min-height: 600px;
-    background: #6e1044; /** origin color was -> #F3F3F3 */
+    background: #b38f4f; /** #b38f4f origin color was -> #683c16 */
 }
 
 #page-inner {
     width: 100%;
     margin: 10px 20px 10px 0px;
-    background-color: rgb(161, 237, 250)!important; /** origin color was -> #fff */
+    background-color: rgb(161, 237, 250)!important; /** 0e70a0 origin color was -> #fff */
     padding: 10px;
     min-height: 1050px;
 }
@@ -87,7 +87,7 @@ body {
 }
 
 .navbar-inverse {
-    background-color: #214761;
+    background-color: #0e70a0;
     border-color: #F0F0F0;
     min-height: 80px;
 }

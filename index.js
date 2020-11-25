@@ -48,6 +48,8 @@ app.set('view engine', 'hbs');
 app.engine('hbs', handlebars({
     extname: 'hbs',
     defaultLayout: 'index',
+    partialsDir: __dirname + "/views/partials",
+    layoutsDir: __dirname + "/views/layouts",
 }))
 
 // ----------------------- paths for test ---------------------------

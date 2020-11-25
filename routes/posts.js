@@ -24,10 +24,10 @@ const upload = multer({
 
 // ----------------- finished multer set up -----------------------------
 
-
+// when advisor try to see student info
 router.get('/one/:id', async (req, res) => {
     // advisor taking only one post
-    // console.log(req.params.id);
+
     let post;
 
     try {
@@ -35,11 +35,7 @@ router.get('/one/:id', async (req, res) => {
     } catch (err) {
         res.sendStatus(400);
     }
-    // console.log(post);
-    // console.log("from the place I know...");
-    // console.log(typeof post.fallowUp);
-
-    // console.log();
+   
 
     res.render('replytoStudent', {
         layout: 'advisor',
@@ -55,7 +51,6 @@ router.get('/one/:id', async (req, res) => {
 })
 
 // post from advisor when he answers student problem
-
 router.post('/fallow', async (req, res) => {
 
     // update the post with DR answer
@@ -94,7 +89,7 @@ router.post('/', upload.single('attachment'), async (req, res) => {
     try {
 
         await post.save();
-        res.status(200).redirect('../student.html'); // there should be some other routing methods here..!
+        res.status(200).redirect('/student');
 
     } catch (err) {
         console.log(err);

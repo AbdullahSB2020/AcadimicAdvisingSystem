@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-md-12">
+        <h2> تواصل مع مرشدي </h2>
+    </div>
+</div>
+<hr />
+
+<div class="container">
+    <form action="/post/" method="POST" enctype="multipart/form-data">
+
+        <div class="row">
+            <div class="form-group col-12">
+                <label for="title">الموضوع : </label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="ادخل موضوع">
+                <input type="hidden" value="372027433" id="studentID" name="student_id">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">نوع الطلب :</label>
+                <select class="form-control" name="type" id="exampleFormControlSelect1">
+                    <option>شكوى</option>
+                    <option>عذر</option>
+                    <option>طلب نصيحة</option>
+                    <option>ضائقة مالية</option>
+                    <option>حلاوة طحينية</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-12">
+                <label for="message">فضفض وتكلم :</label>
+                <textarea class="form-control" name="message" id="message" rows="3"
+                    placeholder="وش تبي تقول؟"></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label for="attachment">مرفقات :</label>
+                <input type="file" class="form-control-file" id="attachment" name="attachment">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-danger">أرسل</button>
+    </form>
+</div>
