@@ -1,6 +1,6 @@
 
     
-function formatPost(posts){
+function formatPosts(posts){
     let postArray = [];
     posts.forEach((post) => {
 
@@ -19,4 +19,4 @@ function formatPost(posts){
     return postArray ;
 }
 
-module.exports = formatPost;
+module.exports = formatPosts;

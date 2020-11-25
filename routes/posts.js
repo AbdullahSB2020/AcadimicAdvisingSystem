@@ -29,20 +29,46 @@ router.get('/one/:id', async (req, res) => {
     // advisor taking only one post
     // console.log(req.params.id);
     let post;
+
     try {
-         post = await Post.findOne({_id: req.params.id});
+        post = await Post.findOne({ _id: req.params.id });
     } catch (err) {
         res.sendStatus(400);
     }
     // console.log(post);
-    // res.end();
-    res.render('replaytoStudent',{
-        layout: 'advisor',        
+    // console.log("from the place I know...");
+    // console.log(typeof post.fallowUp);
+
+    // console.log();
+
+    res.render('replytoStudent', {
+        layout: 'advisor',
+        id: req.params.id,
         studentID: post.studentID,
         title: post.title,
         body: post.body,
-        attachments: post.attachments != 'No file specified' ? post.attachments : false ,
+        attachments: post.attachments != 'No file specified' ? post.attachments : false,
+        fallowUp: typeof post.fallowUp !== undefined ? post.fallowUp : "",
     });
+
+
+})
+
+// post from advisor when he answers student problem
+
+router.post('/fallow', async (req, res) => {
+
+    // update the post with DR answer
+    let filter = { _id: req.body.postid };
+    let update = { fallowUp: req.body.reply };
+    try {
+
+        await Post.findOneAndUpdate(filter, update);
+
+    } catch (err) {
+        res.sendStatus(400);
+    }
+    res.redirect('/advisor');
 })
 
 // post for the student to send to his advisor
@@ -61,12 +87,13 @@ router.post('/', upload.single('attachment'), async (req, res) => {
         title: postBody.title,
         body: postBody.body,
         type: postBody.type,
-        attachments: postBody.attachment
+        attachments: postBody.attachment,
+        fallowUp: "",
     })
 
     try {
 
-        const savedPost = await post.save();
+        await post.save();
         res.status(200).redirect('../student.html'); // there should be some other routing methods here..!
 
     } catch (err) {
@@ -74,7 +101,6 @@ router.post('/', upload.single('attachment'), async (req, res) => {
         console.log("some error with saving the post happen..");
         res.end('an error with the file');
     }
-    // res.redirect('../student.html');
 })
 
 module.exports = router;

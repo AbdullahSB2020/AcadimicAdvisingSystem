@@ -1,10 +1,11 @@
-<form action="" method="POST" >
+<form action="/post/fallow" method="POST" >
 
     <div class="row">
         <div class="form-group col-12">
             <label for="title">العنوان : </label>
             <input type="text" class="form-control" id="title" name="title" placeholder="ادخل موضوع" value="{{title}}" disabled="disabled">
             <input type="hidden" value="{{studentID}}" id="studentID" name="student_id">
+            <input type="hidden" value="{{id}}" id="postid" name="postid">
         </div>
     </div>
 
@@ -18,14 +19,21 @@
     {{#if attachments}}
         <div>
             <h5>المرفقات: </h5>
-            <a href="/uploads/{{attachments}}"></a>
+            <a href="/uploads/{{attachments}}" target="#">{{attachments}}</a>
+        </div>
+    {{else}}
+        <div>
+            <h5>المرفقات: </h5>
+            <p>لا توجد مرفقات </p>
         </div>
     {{/if}}
+
+    <br>
 
     <div class="row">
         <div class="form-group col-12">
             <label for="reply">الجواب على هذه المشكلة:</label>
-            <textarea class="form-control" name="reply" id="reply" rows="3" placeholder="ماهو الرد الأمثل لهذه المشكلة"></textarea>
+            <textarea class="form-control" name="reply" id="reply" rows="6" placeholder="ماهو الرد الأمثل لهذه المشكلة">{{fallowUp}}</textarea>
         </div>
     </div>
 

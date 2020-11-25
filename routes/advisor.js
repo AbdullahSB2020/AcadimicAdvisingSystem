@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const Post = require('../models/post');
-const formatPost = require('../utils/formatPost');
+const formatPosts = require('../utils/formatPost');
 
 
 router.get('/', async (req, res) => {
@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
                 // send the rendered page with data filled in
                 res.status(200).render('studentsProblems.hbs', {
                     layout: 'advisor', 
-                    post: formatPost(posts),
+                    post: formatPosts(posts),
                     addScript: false,
                 });
 
