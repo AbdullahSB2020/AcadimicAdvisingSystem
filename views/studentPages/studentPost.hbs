@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-md-12">
+        <h2> طلباتي المرسلة </h2>
+    </div>
+</div>
+<hr />
+
+<form action="/student/myPosts">
+
+    <div class="row">
+        <div class="form-group col-12">
+            <label for="title">العنوان : </label>
+            <input type="text" class="form-control" value="{{title}}" disabled="disabled">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-12">
+            <label for="content">المحتوى : </label>
+            <textarea type="text" class="form-control" rows="6" disabled="disabled">{{body}}</textarea>
+        </div>
+    </div>
+
+    {{#if attachments}}
+    <div>
+        <h5>المرفقات: </h5>
+        <a href="/uploads/{{attachments}}" target="#">{{attachments}}</a>
+    </div>
+    {{else}}
+    <div>
+        <h5>المرفقات: </h5>
+        <p>لا توجد مرفقات </p>
+    </div>
+    {{/if}}
+
+    <br>
+
+    <div class="row">
+        <div class="form-group col-12">
+            <label for="reply">الجواب على هذه المشكلة:</label>
+            <textarea class="form-control" rows="6" disabled="disabled">{{fallowUp}}</textarea>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-1"></div>
+        <button type="submit" class="btn btn-danger">عودة</button>
+    </div>
+</form>

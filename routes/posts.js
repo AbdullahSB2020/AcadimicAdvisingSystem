@@ -36,7 +36,6 @@ router.get('/one/:id', async (req, res) => {
         res.sendStatus(400);
     }
    
-
     res.render('replytoStudent', {
         layout: 'advisor',
         id: req.params.id,
