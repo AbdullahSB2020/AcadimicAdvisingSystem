@@ -41,7 +41,7 @@ body {
     margin: 10px 20px 10px 0px;
     background-color: rgb(161, 237, 250)!important; /** 0e70a0 origin color was -> #fff */
     padding: 10px;
-    min-height: 1050px;
+    min-height: 550px; /** value was 1050 */
 }
 
 .pad-top {
@@ -160,7 +160,7 @@ body {
     #page-wrapper {
         margin: 0px 260px 0px 0px;
         padding: 15px 30px;
-        min-height: 1050px;
+        min-height: 1050;
     }
     .navbar-side {
         z-index: 1;

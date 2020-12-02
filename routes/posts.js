@@ -1,3 +1,4 @@
+
 const express = require('express');
 const router = express.Router();
 const Post = require('../models/post');
@@ -15,7 +16,7 @@ const storage = multer.diskStorage({
     }
 });
 
-//               \/ for different sizes modify here
+//                \/ for different sizes modify here
 const sizeLimit = 1 * 1024 * 1024; // 1MB
 
 const upload = multer({
@@ -38,6 +39,8 @@ router.get('/one/:id', async (req, res) => {
    
     res.render('replytoStudent', {
         layout: 'advisor',
+        pageRole: "Advisor Page",
+        linktoMain: '/advisor',
         id: req.params.id,
         studentID: post.studentID,
         title: post.title,

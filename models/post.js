@@ -17,7 +17,7 @@ const postSchema = mongoose.Schema({
         default: Date.now()
     },
     attachments: String,
-    fallowUp: String
+    fallowUp: String, // try to make like this { type: String, default: ""} no reply when initlize the post
 });
 
 const Post = mongoose.model('post', postSchema);

@@ -20,6 +20,8 @@ const path = require('path');
 const postsRoute = require('./routes/posts');
 const studentsRoute = require('./routes/student');
 const advisorsRoute = require('./routes/advisor');
+const advisingUnitRoute = require('./routes/advisingUnit');
+const registerRoute = require('./routes/api/login');
 
 // initalizing the app
 const app = express();
@@ -56,15 +58,19 @@ app.engine('hbs', handlebars({
 
 // serve index page
 app.get('/', (req, res) => {
-    console.log(req.path)
-    res.render('main',{ pageRole: 'main page'});
+    res.render('signUp',{ 
+        pageRole: 'main page',
+        enableScriptRigster: false,
+    });
 })
 
 // api routes
-app.use('/post', postsRoute);
+app.use('/registration',registerRoute);
 
+app.use('/post', postsRoute);
 app.use('/student', studentsRoute);
 app.use('/advisor', advisorsRoute);
+app.use('/advisingUnit', advisingUnitRoute);
 
 // app listenning port
 

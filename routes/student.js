@@ -2,8 +2,6 @@ const router = require('express').Router();
 const Post = require('../models/post');
 const { formatPostsStudent } = require('../utils/formatPost');
 
-
-
 router.get('/', (req, res) => {
     res.status(200).render('studentPages/studentMain', {
         layout: 'student',
@@ -46,6 +44,7 @@ router.get('/myPost/:id', async (req,res)=> {
             res.render('studentPages/studentPost',{
                 layout: 'student',
                 pageRole: 'Stduent Page',
+                linktoMain: '/student',
                 title: post.title ,
                 body: post.body,
                 fallowUp: post.fallowUp,

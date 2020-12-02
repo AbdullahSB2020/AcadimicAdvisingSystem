@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    {{> advisingUnit/advisingUnitHead}}
+</head>
+
+<body>
+    <div id="wrapper">
+        {{> header }}
+        <nav class="navbar-default navbar-side" id="divnav" role="navigation">
+            <div class="sidebar-collapse">
+                {{> advisingUnit/advisingUnitMenu}}
+            </div>
+        </nav>
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="container">
+                    {{{body}}}
+                </div>
+            </div>
+        </div>
+        {{> footer }}
+        {{> advisingUnit/advisingUnitScripts }}
+</body>
+
+</html>

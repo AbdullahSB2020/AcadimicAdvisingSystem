@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-md-12">
+        <h2> تسجيل الدخول </h2>
+    </div>
+</div>
+<hr />
+<div class="container">
+    <form action="/registration/login" method="POST" id="register">
+        {{#if errorMessage}}
+            <section>{{errorMessage}}</section>
+        {{/if}}
+        <br>    
+        <div class="row">
+            <div class="form-group col-6">
+                <label for="username">الاسم : </label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="ادخل اسمك ">
+                {{!-- <section>SomeErrorsOcurred</section> --}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-6">
+                <label for="email"> الإيميل : </label>
+                <input type="text" class="form-control" id="email" name="email" placeholder="استخدم إيميلك الجامعي">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-6">
+                <label for="pass"> كلمة السر : </label>
+                <input type="password" class="form-control" id="pass" name="pass" placeholder="كلمة السر">
+                <span>
+                    باقي ما سجلت؟؟
+                    <a href="#">سجل من هنا</a>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-4">
+                <button type="submit" class="btn btn-danger col-4">دخول</button>
+            </div>
+        </div>
+
+    </form>
+</div>
