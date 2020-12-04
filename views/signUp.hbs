@@ -6,33 +6,34 @@
 <hr />
 <div class="container">
     <form action="/registration/register" method="POST" id="register">
-        <br>    
+        <br>
+        {{error}}
         <div class="row">
             <div class="form-group col-6">
                 <label for="username">الاسم : </label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="ادخل اسمك " >
+                <input type="text" class="form-control" id="username" name="username" placeholder="ادخل اسمك " autofocus >
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col-6">
-                <label for="universityid">الرقم الجامعي</label>
-                <input type="text" class="form-control" id="universityid" name="universityid" placeholder="ادخل رقمك الجامعي " >
+                <label for="universityID">الرقم الجامعي</label>
+                <input type="text" class="form-control" id="universityID" name="universityID" placeholder="ادخل رقمك الجامعي " >
             </div>
         </div>
         
         <div class="row">        
             <div class="form-group col-6">
                 <label for="email"> الإيميل : </label>
-                <input type="text" class="form-control" id="email" name="email" placeholder="الإيميل الجامعي" autofocus>
+                <input type="text" class="form-control" id="email" name="email" placeholder="الإيميل الجامعي" >
             </div>
         </div>
 
 
         <div class="row">
             <div class="form-group col-6">
-                <label for="pass"> كلمة السر : </label>
-                <input type="password" class="form-control" id="pass" name="pass" placeholder="كلمة السر">
+                <label for="password"> كلمة السر : </label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="كلمة السر" >
             </div>
         </div>
 

@@ -58,7 +58,7 @@ app.engine('hbs', handlebars({
 
 // serve index page
 app.get('/', (req, res) => {
-    res.render('signUp',{ 
+    res.render('signIn',{ 
         pageRole: 'main page',
         enableScriptRigster: false,
     });

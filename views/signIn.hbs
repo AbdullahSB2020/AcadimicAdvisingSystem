@@ -6,29 +6,20 @@
 <hr />
 <div class="container">
     <form action="/registration/login" method="POST" id="register">
-        {{#if errorMessage}}
-            <section>{{errorMessage}}</section>
-        {{/if}}
+         {{error}}
         <br>    
         <div class="row">
             <div class="form-group col-6">
-                <label for="username">الاسم : </label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="ادخل اسمك ">
+                <label for="universityID">الرقم الجامعي </label>
+                <input type="text" class="form-control" id="universityID" name="universityID" placeholder="ادخل رقمك الجامعي " autofocus>
                 {{!-- <section>SomeErrorsOcurred</section> --}}
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col-6">
-                <label for="email"> الإيميل : </label>
-                <input type="text" class="form-control" id="email" name="email" placeholder="استخدم إيميلك الجامعي">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-6">
-                <label for="pass"> كلمة السر : </label>
-                <input type="password" class="form-control" id="pass" name="pass" placeholder="كلمة السر">
+                <label for="password"> كلمة السر : </label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="كلمة السر">
                 <span>
                     باقي ما سجلت؟؟
                     <a href="#">سجل من هنا</a>
