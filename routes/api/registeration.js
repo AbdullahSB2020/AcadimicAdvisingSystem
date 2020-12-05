@@ -5,6 +5,7 @@ const Student = require('../../models/student');
 const Advisor = require('../../models/advisor');
 const bcrypt = require('bcryptjs');
 const userType = require('../../utils/userType');
+const { createToken } = require('../../utils/tokenController');
 
 
 router.post('/register',
@@ -107,7 +108,7 @@ router.post('/register',
 router.post('/login',
     validationMethod.validate('signUser'),
     async (req, res) => {
-        
+
         /** we want to make sure data is valid 
             // we are going to be using the express-validator 
         */
@@ -127,7 +128,7 @@ router.post('/login',
             // here I should send the errors back to the page if any
         }
 
-        // fetch the user based on his id
+        // fetch the user based on his universityID
 
         const isAdvisor = Number(universityID.length) === userType.advisor;
         const isStudent = Number(universityID.length) === userType.student;
@@ -150,6 +151,8 @@ router.post('/login',
             }
         }
 
+        // if no user found
+
         const userIsNull = (user === null);
         const userIsUndef = (user === undefined);
 
@@ -159,25 +162,30 @@ router.post('/login',
             res.status(400).render('signIn', {
                 pageRole: 'main page',
                 enableScriptRigster: false,
-                error: "There's already user wth this id",
+                error: "There's already a user wth this id",
             }) // for pages
             return;
         }
 
-        // then we gonna compare the two passwords
+        // then compare password with DB user.password
         if (user !== undefined) {
 
             const comparedPass = await bcrypt.compare(password, user.password);
-            
+
             if (comparedPass) {
 
                 if (isStudent) {
+                    // create a jwt for this user.. ((possibly I need to create a function to do that ))
+                    createToken(user._id, req, res);
+                    
                     res.status(200).redirect('/student'); // for pages
                     // res.status(200).json({ msg: `${user.username} is student, has matched password` }); // for postman
                     return;
                 }
 
                 if (isAdvisor) {
+                    createToken(user._id, req, res);
+
                     res.status(200).redirect('/advisor'); // for pages
                     // res.status(200).json({ msg: `${user.username} is advisor, has matched password` }); // for postman
                     return;
