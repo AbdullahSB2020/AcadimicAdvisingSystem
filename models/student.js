@@ -17,9 +17,13 @@ const studentSchema = mongoose.Schema({
         type: Number,
         requried: true
     },
+    myAdvisorID: { // we'll use this advisor id to sent posts
+        type: Number,
+        default: 0, 
+    },
     // mobile: {
     //     type: Number,
-    //     default: 0000000000,
+    //     default: 0,
     // },
     // status:{ // if student graduate | undergradute
     //     type: String,

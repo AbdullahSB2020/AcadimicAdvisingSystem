@@ -2,8 +2,11 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../models/post');
+const Student = require('../models/student');
 const multer = require('multer');
 const path = require('path');
+const { verifyToken } = require('../utils/tokenController');
+
 
 
 // ------------------------- setting up multer --------------------------
@@ -36,7 +39,7 @@ router.get('/one/:id', async (req, res) => {
     } catch (err) {
         res.sendStatus(400);
     }
-   
+
     res.render('replytoStudent', {
         layout: 'advisor',
         pageRole: "Advisor Page",
@@ -69,35 +72,59 @@ router.post('/fallow', async (req, res) => {
 })
 
 // post for the student to send to his advisor
-router.post('/', upload.single('attachment'), async (req, res) => {
+router.post('/',
+    verifyToken,
+    upload.single('attachment'),
+    async (req, res) => {
+        const user = res.locals.user;
+        // console.log(user);
 
-    let postBody = {
-        studentID: Number(req.body.student_id),
-        title: req.body.title,
-        body: req.body.message,
-        type: 'private',
-        attachment: req.file !== undefined ? req.file.filename : 'No file specified',
-    }
+        const student = await Student.findById({_id: user._id});
 
-    const post = new Post({
-        studentID: postBody.studentID,
-        title: postBody.title,
-        body: postBody.body,
-        type: postBody.type,
-        attachments: postBody.attachment,
-        fallowUp: "",
+        if(!student){
+            console.log("you shouldn't to post a post...");
+        }
+
+        // console.log(student.studentID);
+        // console.log(student);
+
+
+        let postBody = {
+
+            studentID: Number(student.studentID),
+            studentName: student.username,
+            advisorID: student.myAdvisorID,
+            title: req.body.title,
+            body: req.body.message,
+            type: 'private',
+            attachment: req.file !== undefined ? req.file.filename : 'No file specified',
+        
+        }
+
+        const post = new Post({
+
+            studentID: postBody.studentID,
+            studentName: postBody.studentName,
+            advisorID: postBody.advisorID,
+            title: postBody.title,
+            body: postBody.body,
+            type: postBody.type,
+            attachments: postBody.attachment,
+            fallowUp: "",
+
+        })
+        
+        // res.status(200).json({post}); // for test
+        try {
+
+            await post.save();
+            res.status(200).redirect('/student');
+
+        } catch (err) {
+            console.log(err);
+            console.log("some error with saving the post happen..");
+            res.end('an error with the file');
+        }
     })
-
-    try {
-
-        await post.save();
-        res.status(200).redirect('/student');
-
-    } catch (err) {
-        console.log(err);
-        console.log("some error with saving the post happen..");
-        res.end('an error with the file');
-    }
-})
 
 module.exports = router;

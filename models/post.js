@@ -7,9 +7,16 @@ const postSchema = mongoose.Schema({
         max: 999999999,
         min: 100000000,
     },
+    studentName: {
+        type: String,
+    },
+    advisorID:{
+        type: Number,
+        required: true,
+    },
     title: String,
     body: String,
-    type: { // < taken from the drop list in the chosing subject
+    type: { // < taken from the drop list in the chosing subject ( private or public)
         type: String
     }, 
     date: {
