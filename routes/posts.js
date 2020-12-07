@@ -43,7 +43,6 @@ router.get('/one/:id', async (req, res) => {
     res.render('replytoStudent', {
         layout: 'advisor',
         pageRole: "Advisor Page",
-        linktoMain: '/advisor',
         id: req.params.id,
         studentID: post.studentID,
         title: post.title,
@@ -77,17 +76,14 @@ router.post('/',
     upload.single('attachment'),
     async (req, res) => {
         const user = res.locals.user;
-        // console.log(user);
 
         const student = await Student.findById({_id: user._id});
 
         if(!student){
-            console.log("you shouldn't to post a post...");
+            console.log("you aren't student, get out!!");
+            // if this user somehow get into student files. (unauthorizied)
+            res.status(401).redirect('/'); 
         }
-
-        // console.log(student.studentID);
-        // console.log(student);
-
 
         let postBody = {
 

@@ -12,7 +12,7 @@ function formatPostsAdvisor(posts){
             date: d,
             _id: post._id,
             title: post.title,
-
+            studentName: post.studentName,
         }
         postArray.push(postObj);
     })
