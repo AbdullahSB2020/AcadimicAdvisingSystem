@@ -1,0 +1,19 @@
+<div class="row">
+    {{#each student}}
+    <div class="card col-4 my-2 mx-2">
+        <h3 class="card-header">{{this.name}}</h3>
+        {{!-- here should be some student photo get uploaded --}}
+        <img src="/uploads/ph.svg" width="200" alt="">
+
+        <div class="card-body">
+            <p class="card-text">الرقم الجامعي للطالب: {{this.id}}</p>
+        </div>
+
+        <div class="card-body row">
+            <a src="#" class="btn btn-success my-2 mx-1 col-10 col-md-5">انظر ملف الطالب</a>
+            <br>
+            <a src="#" class="btn btn-success my-2 mx-1 col-10 col-md-5">تواصل مع الطالب</a>
+        </div>
+    </div>
+    {{/each}}
+</div>
