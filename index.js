@@ -59,9 +59,17 @@ app.engine('hbs', handlebars({
 
 // ----------------------- paths for test ---------------------------
 
-// serve index page
+// serve login page
 app.get('/', (req, res) => {
     res.render('signIn', {
+        pageRole: 'main page',
+        enableScriptRigster: false,
+    });
+})
+
+//serve register page
+app.get('/register', (req, res) => {
+    res.render('signUp', {
         pageRole: 'main page',
         enableScriptRigster: false,
     });

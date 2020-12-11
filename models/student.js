@@ -17,26 +17,34 @@ const studentSchema = mongoose.Schema({
         type: Number,
         requried: true
     },
-    myAdvisorID: { // we'll use this advisor id to sent posts
+    myAdvisorID: { 
+        // we'll use this advisor id to sent posts
         type: Number,
         default: 0, 
     },
-    // mobile: {
-    //     type: Number,
-    //     default: 0,
-    // },
-    // status:{ // if student graduate | undergradute
-    //     type: String,
-    //     default: '',
-    // },
-    // GPA: {
-    //     type: Number,
-    //     default: 0.00,
-    // },
-    // studyLevel: {
-    //     type: String,
-    //     default: '',
-    // }
+    
+    // all fallowing fields filled later from studentFile page
+
+    mobile: {
+        type: Number,
+        default: 0,
+    },
+    status:{ // if student graduate | undergradute
+        type: String,
+        default: '',
+    },
+    GPA: {
+        type: Number,
+        default: 0.00,
+    },
+    level: {
+        type: String,
+        default: '',
+    },
+    major: {
+        type: String,
+        default: '',
+    }
 })
 
 const Student = mongoose.model('student',studentSchema);

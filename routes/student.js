@@ -66,4 +66,17 @@ router.get('/myPost/:id', async (req, res) => {
     }
 })
 
+router.get('/myFile', verifyToken, async (req, res) => {
+
+    const student = await userDetails(res,userType.student);
+
+    res.render('studentPages/studentFile.hbs', {
+        layout: 'student',
+        pageRole: 'Student Page',
+        studentName: student.username,
+        email: student.email,
+        universityID: student.studentID,
+    });
+})
+
 module.exports = router;

@@ -11,10 +11,13 @@ const { verifyToken } = require('../utils/tokenController');
 
 router.get('/', verifyToken, async (req, res) => {
 
+    const advisor = await userDetails(res, userType.advisor);
+
     // send the rendered page with data filled in
     res.status(200).render('advisorPages/advisorMain.hbs', {
         layout: 'advisor',
         pageRole: "Advisor Page",
+        advisorName: advisor.username,
     });
 
 })

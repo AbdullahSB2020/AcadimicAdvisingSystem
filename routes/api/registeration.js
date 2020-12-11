@@ -18,9 +18,7 @@ router.post('/register',
         const { errors } = validationResult(req);
 
         if (errors.length != 0) {
-
             console.log(errors);
-
         }
 
         const { universityID, password } = req.body;
@@ -54,7 +52,7 @@ router.post('/register',
             res.status(404).send(err);
         }
 
-        // then for the password we gonna hash it
+        // hash the password
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -79,7 +77,7 @@ router.post('/register',
                 res.status(404).send(err);
             }
         }
-
+        console.log(req.body.advisorID);
         if (isStudent) {
             console.log('create student user and submit him to the DB');
             // User is Student
@@ -88,6 +86,8 @@ router.post('/register',
                 password: hashedPassword,
                 username: req.body.username,
                 studentID: req.body.universityID,
+                //advisorID is optiaonl and should be deleted, this for text only
+                myAdvisorID: req.body.advisorID,
             });
             try {
                 const savedUser = await newUser.save();
@@ -162,7 +162,7 @@ router.post('/login',
             res.status(400).render('signIn', {
                 pageRole: 'main page',
                 enableScriptRigster: false,
-                error: "There's already a user wth this id",
+                error: "enter valid entries, please",
             }) // for pages
             return;
         }

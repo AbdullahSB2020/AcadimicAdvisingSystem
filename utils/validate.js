@@ -10,6 +10,9 @@ exports.validate = (method) => {
                 body('universityID',"you should spicify an id").exists({checkFalsy: true}).bail()
                     .matches(/(^\d{9}$)|(^\d{6}$)/).withMessage('id not correct format'),
                 
+                // optional, should be deleted
+                body('advisorID',"you should spicify an id").matches(/(^\d{6}$)/),
+                
                 body('email', 'you should spicify an email').exists({checkFalsy: true}).bail()
                     .isEmail().withMessage("email have to be Alphanumbric"),
                 
