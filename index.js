@@ -17,7 +17,7 @@ const handlebars = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 
-// route imports 
+// import routes 
 const postsRoute = require('./routes/posts');
 const studentsRoute = require('./routes/student');
 const advisorsRoute = require('./routes/advisor');
@@ -87,7 +87,7 @@ app.use('/advisingUnit', advisingUnitRoute);
 app.use('/logout', logoutRoute);
 
 
-
+// this route to test tokens only
 app.get('/testToken', verifyToken, (req, res) => {
 
     const user = res.locals.user;

@@ -56,6 +56,7 @@ router.get('/advisorStudents',
         const advisor = await userDetails(res, userType.advisor);
 
         try {
+            // get all students whom advisor is this advisor {advisor}
             await Student.find({ myAdvisorID: advisor.advisorID })
                 .then(AdvisorStudents => {
 
@@ -72,5 +73,14 @@ router.get('/advisorStudents',
 
 
     })
+
+router.get('/contactStudent', async (req, res) => {
+    
+    res.status(200).render('advisorPages/advisorContactStudent.hbs', {
+        layout: 'advisor',
+        pageRole: "Advisor Page",
+        
+    });
+})
 
 module.exports = router;

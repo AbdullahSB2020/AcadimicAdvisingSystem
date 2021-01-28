@@ -18,6 +18,10 @@ const advisorSchema = mongoose.Schema({
         type: Number,
         requried: true
     },
+    activeAdvisor: {
+        type: Boolean,
+        default: false,
+    }
 })
 
 const Advisor = mongoose.model('advisor', advisorSchema);

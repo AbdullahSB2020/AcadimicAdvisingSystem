@@ -1,0 +1,41 @@
+<!-- page header -->
+<div class="row">
+    <div class="col-md-12">
+        <h2>المرشديين الأكاديميين</h2>
+    </div>
+</div>
+
+<hr />
+
+<!-- end of page header -->
+
+<!-- list of advisors should appear here -->
+
+{{#each advisors}}
+<div>
+    <h4>
+        {{this.username}} | {{this.advisorID}}
+    </h4> 
+    <p>
+        {{this.email}}
+    </p>
+    <form action="/advisingUnit/activateAdvisor">
+        <div class="form-group">
+            <div class="custom-control custom-switch">
+
+                {{#if this.activeAdvisor}}
+                    <input type="checkbox" class="custom-control-input" id="{{this.boxID}}" checked="checked">
+                    <label class="custom-control-label" for="{{this.boxID}}"> المرشد مفعّل </label>
+                {{else}}
+                    <input type="checkbox" class="custom-control-input" id="{{this.boxID}}">
+                    <label class="custom-control-label" onChange="alert(\"how are you\")"
+                    on for="{{this.boxID}}"> تفعيل المرشد </label>
+                {{/if}}
+
+            </div>
+        </div>
+    </form>
+</div>
+<hr />
+<!-- I can use the submit button when the user changes the toggle value -->
+{{/each}}
