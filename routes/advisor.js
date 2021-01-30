@@ -83,4 +83,35 @@ router.get('/contactStudent', async (req, res) => {
     });
 })
 
+router.get('/registerStudents', async (req,res) => {
+    // now should I serve the page 
+    // for post I should set another route 
+
+    res.status(200).render('advisorPages/registerStudents.hbs',{
+        layout: 'advisor',
+        pageRole: "Advisor Page",
+    })
+})
+
+router.post('/_getStudents',(req, res) => {
+    const { registeredStudents } = req.body ;
+    let regArray = registeredStudents.split('\r\n');
+    // each id goes into an array
+
+    const matcher = /^\d{9}$/
+    let validNumbers = [];
+
+    for ( let value of regArray) {
+        const result = matcher.test(value);
+        if(result) validNumbers.push(parseInt(value))
+        else console.log(`value ${value} is wrong`)
+    }
+
+    console.log(validNumbers);
+
+
+
+    res.redirect('/advisor/registerStudents')
+})
+
 module.exports = router;

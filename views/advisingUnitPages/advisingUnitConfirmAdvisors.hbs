@@ -28,7 +28,7 @@
                     <label class="custom-control-label" for="{{this.boxID}}"> المرشد مفعّل </label>
                 {{else}}
                     <input type="checkbox" class="custom-control-input" id="{{this.boxID}}">
-                    <label class="custom-control-label" onChange="alert(\"how are you\")"
+                    <label class="custom-control-label"
                     on for="{{this.boxID}}"> تفعيل المرشد </label>
                 {{/if}}
 
@@ -39,3 +39,4 @@
 <hr />
 <!-- I can use the submit button when the user changes the toggle value -->
 {{/each}}
+<footer style="color:red; background-color:yellow; padding:5px"> لما يضغط على الزر المرشد يتفعل باقي ما سويتها </footer>
