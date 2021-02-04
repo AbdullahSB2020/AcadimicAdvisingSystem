@@ -11,7 +11,9 @@ router.get('/', (req, res) => {
     res.clearCookie('token').status(200).redirect('/'); // on the real path for pages
 
    } 
-   res.status(200).redirect('/');
+   else {
+     res.status(200).redirect('/');
+   }
 //    else {
 //        res.status(400).json({msg: "there is no token to remove..."}) // for postman for checking purposes
 //    }

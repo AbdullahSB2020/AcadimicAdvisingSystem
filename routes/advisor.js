@@ -1,11 +1,14 @@
 const router = require('express').Router();
 const Post = require('../models/post');
 const Student = require('../models/student');
+const AcademicNumbers = require('../models/academicNumbers');
 const { formatPostsAdvisor } = require('../utils/formatPost');
 const { formatStudent } = require('../utils/formatStudent');
 const { userDetails } = require('../utils/getUserDetails');
 const userType = require('../utils/userType');
 const { verifyToken } = require('../utils/tokenController');
+const { getValidStudentID } = require('../utils/validIDs');
+const {submitAcademicNumbers} = require('../utils/academicNumbers');
 
 
 
@@ -75,43 +78,42 @@ router.get('/advisorStudents',
     })
 
 router.get('/contactStudent', async (req, res) => {
-    
+
     res.status(200).render('advisorPages/advisorContactStudent.hbs', {
         layout: 'advisor',
         pageRole: "Advisor Page",
-        
+
     });
 })
 
-router.get('/registerStudents', async (req,res) => {
+router.get('/registerStudents', async (req, res) => {
     // now should I serve the page 
     // for post I should set another route 
 
-    res.status(200).render('advisorPages/registerStudents.hbs',{
+    res.status(200).render('advisorPages/registerStudents.hbs', {
         layout: 'advisor',
         pageRole: "Advisor Page",
     })
 })
 
-router.post('/_getStudents',(req, res) => {
-    const { registeredStudents } = req.body ;
-    let regArray = registeredStudents.split('\r\n');
-    // each id goes into an array
+router.post('/_getStudents',
+    verifyToken,
+    async (req, res) => {
 
-    const matcher = /^\d{9}$/
-    let validNumbers = [];
+        const { registeredStudents } = req.body;
+        let regArray = registeredStudents.split('\r\n');
 
-    for ( let value of regArray) {
-        const result = matcher.test(value);
-        if(result) validNumbers.push(parseInt(value))
-        else console.log(`value ${value} is wrong`)
-    }
+        const advisor = await userDetails(res, userType.advisor);
 
-    console.log(validNumbers);
+        let validNumbers = getValidStudentID(regArray)[0]['value'];
+        let notValidNumbers = getValidStudentID(regArray)[1]['value']; // the array that has wrong format correct numbers
+        
+        // if the there's no student id in the array then do nothing
+        if (validNumbers.length != 0)
+            await submitAcademicNumbers(advisor.advisorID, validNumbers);
 
-
-
-    res.redirect('/advisor/registerStudents')
-})
+        // this temporary route for convenate of testing 
+        res.redirect('/advisor/')
+    })
 
 module.exports = router;

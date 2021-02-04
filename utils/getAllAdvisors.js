@@ -30,7 +30,7 @@ function formatAdvisor(advisors){
             email: advisor.email,
             username: advisor.username,
             advisorID: advisor.advisorID,
-            boxID : uuid.v4(),
+            boxID : uuid.v4(), // used in adding unique key to each toggle element in the dom
         }
         advisorsArray.push(obj);
     })
